@@ -1,0 +1,11 @@
+# que hace cada tag de esta configuracion?
+spring:
+  sleuth:
+    traceId128: true
+    baggage:
+      remoteFields:
+        - guid
+      tagFields:
+        - guid
+      correlation-fields:
+        - guid
