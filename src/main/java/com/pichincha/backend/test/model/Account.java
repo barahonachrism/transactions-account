@@ -3,26 +3,38 @@ package com.pichincha.backend.test.model;
 import static javax.persistence.GenerationType.AUTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@Table(name="account")
 @Entity
 @Getter
 @Setter
-//todo: map relation of account with transaction based on migration
 public class Account {
 
   @Id
+  @Column(name = "id")
   @GeneratedValue(strategy = AUTO)
   UUID id;
+
+  @NotNull
+  @Column(name = "number")
   String number;
-  @Column(length = 70)
+
+  @NotNull
+  @Column(name="type", length = 70)
   String type;
+
+  @NotNull
   @Column(name = "creation_date", insertable = false, updatable = false)
   LocalDateTime creationDate;
+
+  @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+  private List<Transaction> transactionList;
+
 }

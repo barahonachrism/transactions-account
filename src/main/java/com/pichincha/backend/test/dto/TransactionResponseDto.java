@@ -16,6 +16,6 @@ import lombok.experimental.FieldDefaults;
 public class TransactionResponseDto {
 
   String type;
-  int amount;
+  double amount;
 
 }

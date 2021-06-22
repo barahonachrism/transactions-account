@@ -1,6 +1,7 @@
 package com.pichincha.backend.test.rest;
 
 import com.pichincha.backend.test.dto.AccountDto;
+import com.pichincha.backend.test.iservices.IAccountService;
 import com.pichincha.backend.test.service.AccountService;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
   //todo: how do you inject this service without injecting it directly?? Implement it (decouple) OK
-  private final AccountService accountService;
+  private final IAccountService accountService;
 
   public AccountController(AccountService accountService) {
     this.accountService = accountService;
