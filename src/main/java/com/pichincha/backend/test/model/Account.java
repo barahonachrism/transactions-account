@@ -9,12 +9,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NamedQueries({
+        @NamedQuery(name="account.findByNumber", query = "select a from Account a where a.number = :accountNumber")
+})
 @Table(name="account")
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Account {
 
   @Id
@@ -23,7 +28,7 @@ public class Account {
   UUID id;
 
   @NotNull
-  @Column(name = "number")
+  @Column(name = "\"number\"")
   String number;
 
   @NotNull

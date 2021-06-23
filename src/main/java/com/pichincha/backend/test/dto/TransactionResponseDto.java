@@ -12,10 +12,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@FieldDefaults(level = PRIVATE)
 public class TransactionResponseDto {
-
-  String type;
-  double amount;
-
+  private String type;
+  private double amount;
 }

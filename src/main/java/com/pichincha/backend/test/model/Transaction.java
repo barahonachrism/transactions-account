@@ -2,31 +2,29 @@ package com.pichincha.backend.test.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static javax.persistence.GenerationType.AUTO;
 
-/*
-id uuid NOT NULL default random_uuid(),
-    amount double precision NOT NULL,
-    type character varying(70) NOT NULL,
-    creation_date timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    account_id uuid,
-    comment character varying(120) NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT account_fk FOREIGN KEY (account_id)
-        REFERENCES account (id)*/
+@NamedQueries({
+        @NamedQuery(name = "transaction.findByAcountAndRangeAmount", query = "select t from Transaction t where t.accountId = :accountId and t.amount >= :minAmount and t.amount <= : maxAmount order by t.amount desc"),
+        @NamedQuery(name = "transaction.findByAccountAndOrderedAmountDesc", query = "select t from Transaction t where t.accountId = :accountId order by t.amount desc")
+}
+)
 @Entity
 @Table(name="transaction")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Transaction {
     @Id
     @GeneratedValue(strategy = AUTO)
@@ -44,7 +42,7 @@ public class Transaction {
 
     @Column(name = "creation_date")
     @NotNull
-    private Timestamp creationDate;
+    private LocalDateTime creationDate;
 
     @Column(name = "account_id")
     @NotNull
@@ -57,4 +55,11 @@ public class Transaction {
     @JoinColumn(name = "account_id",referencedColumnName = "id",insertable = false,updatable = false)
     private Account account;
 
+    public UUID getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(UUID accountId) {
+        this.accountId = accountId;
+    }
 }

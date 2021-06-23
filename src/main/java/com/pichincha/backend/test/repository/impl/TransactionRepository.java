@@ -19,11 +19,14 @@ public class TransactionRepository extends SimpleJpaRepository<Transaction, UUID
         this.entityManager = em;
     }
 
-    //todo:get all transactions between amounts x and y of a given account; being x and y pathParameters of the API
-    //todo:filter transactions via repository not by service.
+    public List<Transaction> findTransactionsByAccount(UUID accountId){
+        Query query = entityManager.createNamedQuery("transaction.findByAccountAndOrderedAmountDesc");
+        query.setParameter("accountId", accountId);
+        return query.getResultList();
+    }
 
-    public List<Transaction> customFindTransactionsByAmounts(UUID accountId, double minAmount, double maxAmount){
-        Query query = entityManager.createQuery("select t from Transaction t where accountId = :accountId amount >= :minAmount and amount <= : maxAmount");
+    public List<Transaction> findTransactionsByAccountIdAndAmounts(UUID accountId, double minAmount, double maxAmount){
+        Query query = entityManager.createNamedQuery("transaction.findByAcountAndRangeAmount");
         query.setParameter("accountId", accountId);
         query.setParameter("minAmount",minAmount);
         query.setParameter("maxAmount", maxAmount);

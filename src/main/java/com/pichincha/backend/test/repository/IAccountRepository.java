@@ -8,5 +8,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface IAccountRepository extends JpaRepository<Account, UUID> {
-
+    Account findByNumber(String accountNumber);
 }

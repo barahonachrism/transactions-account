@@ -6,5 +6,5 @@ import com.pichincha.backend.test.model.Account;
 import java.util.UUID;
 
 public interface IAccountService {
-    AccountDto getAccount(UUID accountNumber);
+    AccountDto getAccount(String accountNumber);
 }

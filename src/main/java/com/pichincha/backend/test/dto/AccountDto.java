@@ -5,10 +5,14 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
 public class AccountDto {
+
+	@NotNull
+	private UUID id;
 
 	@NotNull
 	private final String number;

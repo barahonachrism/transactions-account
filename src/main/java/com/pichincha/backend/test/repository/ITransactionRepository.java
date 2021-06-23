@@ -8,5 +8,6 @@ import java.util.List;
 import java.util.UUID;
 @NoRepositoryBean
 public interface ITransactionRepository extends JpaRepository<Transaction, UUID> {
-    List<Transaction> customFindTransactionsByAmounts(UUID accountId, double minAmount, double maxAmount);
+    List<Transaction> findTransactionsByAccountIdAndAmounts(UUID accountId, double minAmount, double maxAmount);
+    List<Transaction> findTransactionsByAccount(UUID accountId);
 }

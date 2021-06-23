@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class TransactionDto {
 
+  @NotNull
   private UUID id;
 
   @NotNull
