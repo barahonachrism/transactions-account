@@ -41,7 +41,7 @@ public class TransactionService implements ITransactionService {
   @Override
   public AccountResponseDto getFilteredTransactions(UUID accountId, double minimum,
       double maximum) {
-    List<Transaction> transactions = transactionRepository.findTransactionsByAmounts(accountId,minimum,maximum);
+    List<Transaction> transactions = transactionRepository.customFindTransactionsByAmounts(accountId,minimum,maximum);
     List<TransactionResponseDto> transactionResponseDtoList = serviceMapper.getAllTransactionDto(transactions);
     return new AccountResponseDto(accountId.toString(),transactionResponseDtoList);
 
