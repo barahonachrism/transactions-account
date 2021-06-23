@@ -16,8 +16,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = PRIVATE)
 public class RestTransaction {
 
-  String type;
-  LocalDateTime creationDate;
-  double amount;
+  private String type;
+  private LocalDateTime creationDate;
+  private double amount;
 
 }

@@ -1,6 +1,6 @@
 CREATE TABLE public.account
 (
-    id uuid NOT NULL default gen_random_uuid(),
+    id uuid NOT NULL default random_uuid(),
     "number" character varying(10) NOT NULL,
     type character varying(70) NOT NULL,
     creation_date timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -10,7 +10,7 @@ CREATE TABLE public.account
 
 CREATE TABLE public.transaction
 (
-    id uuid NOT NULL default gen_random_uuid(),
+    id uuid NOT NULL default random_uuid(),
     amount double precision NOT NULL,
     type character varying(70) NOT NULL,
     creation_date timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,

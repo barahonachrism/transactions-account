@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @Getter
 @Builder
@@ -15,14 +17,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TransactionDto {
 
+  @NotNull
   private UUID id;
 
+  @NotNull
   private String comment;
 
+  @NotNull
   private String type;
 
+  @NotNull
   private LocalDateTime creationDate;
 
-  private int amount;
+  @NotNull
+  private double amount;
 
 }
